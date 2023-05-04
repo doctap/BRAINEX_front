@@ -1,0 +1,33 @@
+.TextField {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+
+  .visibility {
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    top: 1.4em;
+    right: 1em;
+  }
+
+  .input {
+    width: 100%;
+    padding: 1.406em 0 1.406em 1em;
+    border: 1px solid #F2F2F2;
+    border-radius: 4px;
+    color: #2B2B2B;
+    font-size: 1rem;
+    font-weight: 400;
+
+    &:focus::placeholder {
+      transform: translateY(-100%);
+      font-size: 12px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &::placeholder {
+      color: #808080;
+    }
+  }
+}

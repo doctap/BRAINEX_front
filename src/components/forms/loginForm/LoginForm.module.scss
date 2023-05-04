@@ -1,0 +1,31 @@
+.loginForm {
+  width: 25.75em;
+  height: 22.625em;
+  font-family: Prompt;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .logoBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .TextFields {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 9.25em;
+  }
+
+  .spinner {
+    transform: rotate(-180deg);
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .loginForm {
+    width: 23.75em;
+  }
+}
