@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: fit-content;
+  display: block;
 
   .visibility {
     width: 1em;
@@ -19,6 +20,7 @@
     color: #2B2B2B;
     font-size: 1rem;
     font-weight: 400;
+    background: #FFFFFF;
 
     &:focus::placeholder {
       transform: translateY(-100%);

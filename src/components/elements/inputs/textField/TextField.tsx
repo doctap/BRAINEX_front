@@ -18,7 +18,7 @@ export const TextField = (prop: ITextField) => {
   };
 
   return (
-    <div className={styles.TextField}>
+    <label className={styles.TextField}>
       <input
         value={prop.value}
         type={showPassword ? 'text' : prop.type}
@@ -35,6 +35,6 @@ export const TextField = (prop: ITextField) => {
           </IconButton>
         </div>
         : null}
-    </div>
+    </label>
   );
 };
