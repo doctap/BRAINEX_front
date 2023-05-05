@@ -10,18 +10,17 @@ interface ILoginForm {
 }
 
 export const LoginForm = (prop: ILoginForm) => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const getLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const elem = event.currentTarget;
-    setLogin(elem.value);
+  let login = '';
+  let password = '';
+
+  const getLogin = (value: string) => {
+    login = value;
   };
 
-  const getPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const elem = event.currentTarget;
-    setPassword(elem.value);
+  const getPassword = (value: string) => {
+    password = value;
   };
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -50,14 +49,12 @@ export const LoginForm = (prop: ILoginForm) => {
           onChange={getLogin}
           placeHolder='Login'
           type='text'
-          value={login}
         />
         <TextField
           icon={prop.showPasswordIcon}
           onChange={getPassword}
           placeHolder='Password'
           type='password'
-          value={password}
         />
       </div>
       <Button onClick={() => 0}>
