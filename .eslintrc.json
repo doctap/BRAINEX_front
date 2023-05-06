@@ -64,6 +64,7 @@
       {
         "skipBlankLines": true
       }
-    ]
+    ],
+    "@typescript-eslint/no-unnecessary-type-constraint": "off"
   }
 }

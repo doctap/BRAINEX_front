@@ -1,2 +1,2 @@
-export * from './button/Button';
+export * from './submit/Submit';
 export * from './isonButton/IconButton';

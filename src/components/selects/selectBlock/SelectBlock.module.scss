@@ -1,0 +1,11 @@
+.selectBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30px;
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

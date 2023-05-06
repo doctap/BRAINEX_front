@@ -1,0 +1,18 @@
+.term {
+  width: fit-content;
+  height: fit-content;
+}
+
+.label {
+  padding: 5px;
+  background-color: #00000000;
+  border-radius: 5px;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkbox:checked ~ label {
+  background: #FDBC11;
+}

@@ -1,0 +1,21 @@
+.main {
+  width: 100%;
+  height: 100%;
+  padding: 0 5.125em;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      width: 60%;
+    }
+
+    .FilterPanel {
+      width: 25.75em;
+    }
+  }
+}

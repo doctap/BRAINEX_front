@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, TextField } from '../../elements';
+import { Submit, TextField } from '../../elements';
 import styles from './LoginForm.module.scss';
 
 interface ILoginForm {
@@ -57,11 +57,11 @@ export const LoginForm = (prop: ILoginForm) => {
           type='password'
         />
       </div>
-      <Button onClick={() => 0}>
+      <Submit>
         {loading
           ? <img className={styles.spinner} src={prop.spinner} alt="loading..." />
           : 'Login'}
-      </Button>
+      </Submit>
     </form>
   );
 };
