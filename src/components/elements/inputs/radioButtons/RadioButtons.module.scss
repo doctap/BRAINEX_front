@@ -1,4 +1,4 @@
-.term {
+.radioButton {
   // width: fit-content;
   height: 1.813em;
   display: flex;
@@ -16,10 +16,10 @@
   align-items: center;
 }
 
-.checkbox {
+.radio {
   display: none;
 }
 
-.checkbox:checked ~ label {
+.radio:checked ~ label {
   background: #FDBC11;
 }

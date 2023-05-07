@@ -24,10 +24,6 @@ export default (
   return foundBySearch;
 };
 
-const getData = (): IData => {
-  return undefined as any;
-};
-
 export interface IFiltersSorts {
   groupIds: number[]
   providerIds: number[]

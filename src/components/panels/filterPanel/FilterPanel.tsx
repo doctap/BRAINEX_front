@@ -3,7 +3,6 @@ import { SearchInput } from '../../elements';
 import icon from '../../../images/search-icon.png';
 import { SelectBlock } from '../../selects';
 import type { IFiltersSorts } from '../../../repository';
-import styles from './FilterPanel.module.scss';
 import type { ITerm } from '../../../types';
 
 export interface IFilterPanel {
@@ -35,16 +34,10 @@ export const FilterPanel = (prop: IFilterPanel) => {
   }, []);
 
   return (
-    <div className={styles.filterPanel}>
-      <div>
-        <SearchInput value={searchInputValue} icon={icon} onChange={getSearchString} placeholder='Search' />
-      </div>
-      <div>
-        <SelectBlock getSelectedIds={getProvidersIds} terms={prop.providers} title='Providers' />
-      </div>
-      <div>
-        <SelectBlock getSelectedIds={getGroupsIds} terms={prop.groups} title='Groups' />
-      </div>
-    </div>
+    <>
+      <SearchInput value={searchInputValue} icon={icon} onChange={getSearchString} placeholder='Search' />
+      <SelectBlock getSelectedIds={getProvidersIds} terms={prop.providers} title='Providers' />
+      <SelectBlock getSelectedIds={getGroupsIds} terms={prop.groups} title='Groups' />
+    </>
   );
 };
