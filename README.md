@@ -1,2 +1,2 @@
 ### install dependencies - npm i
-### run project - npm run start 
+### run app - npm run start 
