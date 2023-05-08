@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5.125em;
+  width: 100%;
+  font-family: Prompt;
+  background: #FDFDFD;
+  box-shadow: 0px -2px 18px rgba(128, 128, 128, 0.1);
+
+  .userAccount {
+    display: flex;
+    flex-direction: row;
+
+
+    .userName:first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .logout {
+    margin-left: 1em;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    border: none;
+    background: #ffff;
+
+    img {
+      width: 1em;
+    }
+
+    .cont {
+      font-weight: 400;
+      margin-left: 8px;
+      color: #EC4466;
+    }
+  }
+}
+
+
+@media screen and (max-width: 428px) {
+
+  .header {
+    padding: 0 1.5em;
+  }
+}

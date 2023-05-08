@@ -1,24 +1,24 @@
-import getGames, { type IFiltersSorts } from './index';
+import getGames, { type IFilterSort } from './index';
 
-const nameSearchString = (): IFiltersSorts => ({
+const nameSearchString = (): IFilterSort => ({
   groupIds: [],
   providerIds: [],
-  orderNameDesc: false,
   gameNameSearchString: 'star',
-  data: testData()
+  data: testData(),
+  sortType: 'alphabetic-order'
 });
 
 test('getGames find by nameSearchString', () => {
   expect(getGames(nameSearchString()).map(q => q.id))
-    .toEqual([800018, 90056, 320028, 320022]);
+    .toEqual([90056, 320022, 800018, 320028]);
 });
 
-const group = (): IFiltersSorts => ({
+const group = (): IFilterSort => ({
   groupIds: [1, 4],
   providerIds: [],
-  orderNameDesc: false,
   gameNameSearchString: '',
-  data: testData()
+  data: testData(),
+  sortType: 'alphabetic-order'
 });
 
 test('getGames find by group', () => {
@@ -37,12 +37,12 @@ test('getGames find by group', () => {
     ]);
 });
 
-const Providers = (): IFiltersSorts => ({
+const Providers = (): IFilterSort => ({
   groupIds: [],
   providerIds: [-3, 30],
-  orderNameDesc: false,
   gameNameSearchString: '',
-  data: testData()
+  data: testData(),
+  sortType: 'alphabetic-order'
 });
 
 test('getGames find by Providers', () => {
@@ -65,12 +65,12 @@ test('getGames find by Providers', () => {
     ]);
 });
 
-const ProvidersAndGroups = (): IFiltersSorts => ({
+const ProvidersAndGroups = (): IFilterSort => ({
   groupIds: [4],
   providerIds: [7],
-  orderNameDesc: false,
   gameNameSearchString: '',
-  data: testData()
+  data: testData(),
+  sortType: 'alphabetic-order'
 });
 
 test('getGames find by Providers and Groups', () => {

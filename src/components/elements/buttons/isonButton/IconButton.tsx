@@ -8,7 +8,7 @@ interface IIconButton {
 
 export const IconButton = (prop: IIconButton) => {
   return (
-    <button onClick={prop.onClick} className={styles.iconButton}>
+    <button type='button' onClick={prop.onClick} className={styles.iconButton}>
       {prop.children}
     </button>
   );

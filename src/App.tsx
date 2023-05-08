@@ -1,15 +1,15 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { LoginPage, MainPage, PageNotFound } from './pages';
 import styles from './App.module.scss';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { LoginPage, MainPage } from './pages';
 
 function App () {
   return (
     <div className={styles.app}>
       <Routes>
-        {/* <Route path='/' element={<Navigate to="login"/>} /> */}
-        {/* <Route path= '/' element={<LoginPage />} /> */}
-        <Route path= '/' element={<MainPage />} />
+        <Route path='/' element={<MainPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
   );

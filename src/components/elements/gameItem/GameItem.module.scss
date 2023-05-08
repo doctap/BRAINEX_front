@@ -9,5 +9,13 @@
   height: 141px;
   width: 196px;
   border-radius: 8px;
-  margin: 0 0.9em;
+  margin: 0 0.8em;
 }
+
+@media screen and (max-width: 428px) {
+  .cover {
+    width: 180px;
+    margin: 0 8px;
+  }
+}
+

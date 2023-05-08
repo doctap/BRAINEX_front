@@ -1,7 +1,10 @@
+import { type SortingValueType } from '../types';
+import getSortedGames from '../helpers/getSortedGames';
+
 export default (
-  filtersAndSorts: IFiltersSorts
+  filtersAndSorts: IFilterSort
 ): IGameBase[] => {
-  const { providerIds, groupIds, gameNameSearchString, data, orderNameDesc } = filtersAndSorts;
+  const { providerIds, groupIds, gameNameSearchString, data, sortType } = filtersAndSorts;
 
   const foundBySearch = data.games.filter(g => g.name.toLowerCase().includes(gameNameSearchString.toLowerCase()));
 
@@ -10,26 +13,29 @@ export default (
 
   if (providerIds.length !== 0 && groupIds.length !== 0) {
     const gamesByGroups = foundBySearch.filter(e => gamesIdsByGroups.some(id => e.id === id));
-    return gamesByGroups.filter(g => gamesIdsByProvidersIds.some(p => p.id === g.id));
+
+    const groupsProviders = gamesByGroups.filter(g => gamesIdsByProvidersIds.some(p => p.id === g.id));
+    return getSortedGames(sortType, groupsProviders);
   }
 
   if (providerIds.length !== 0) {
-    return gamesIdsByProvidersIds;
+    return getSortedGames(sortType, gamesIdsByProvidersIds);
   }
 
   if (groupIds.length !== 0) {
-    return foundBySearch.filter(e => gamesIdsByGroups.some(id => e.id === id));
+    const groups = foundBySearch.filter(e => gamesIdsByGroups.some(id => e.id === id));
+    return getSortedGames(sortType, groups);
   }
 
-  return foundBySearch;
+  return getSortedGames(sortType, foundBySearch);
 };
 
-export interface IFiltersSorts {
+export interface IFilterSort {
   groupIds: number[]
   providerIds: number[]
-  orderNameDesc: boolean
   gameNameSearchString: string
   data: IData
+  sortType: SortingValueType
 }
 
 export interface IData {

@@ -11,7 +11,14 @@ export const GameItemList = (prop: IGameItemList) => {
   return (
     <>
       {prop.items.map((l, i) => (
-        <div className={styles.row} key={i}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: l.length === 2 ? 'center' : 'space-between'
+          }}
+          className={styles.row}
+          key={i}
+        >
           {l.map(x => (
             <GameItem
               isLarge={l.length % 2 !== 0}

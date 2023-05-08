@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Submit, TextField } from '../../elements';
 import styles from './LoginForm.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface ILoginForm {
-  submit: (login: string, password: string) => void
+  submit: (login: string, password: string) => Promise<boolean>
   logo: string
   showPasswordIcon: string
   spinner: string
@@ -11,6 +12,7 @@ interface ILoginForm {
 
 export const LoginForm = (prop: ILoginForm) => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   let login = '';
   let password = '';
@@ -23,7 +25,7 @@ export const LoginForm = (prop: ILoginForm) => {
     password = value;
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (login === '' || password === '') {
@@ -31,14 +33,14 @@ export const LoginForm = (prop: ILoginForm) => {
     }
 
     setLoading(true);
-    prop.submit(login, password);
-    // TODO: send the login request
-    console.log('Logging in...');
+    const isLogin = await prop.submit(login.trim(), password);
+
+    if (isLogin) navigate('/');
   };
 
   return (
     <form
-      onSubmit={onSubmit}
+      onSubmit={e => { onSubmit(e); }}
       className={styles.loginForm}
     >
       <div className={styles.logoBlock}>

@@ -2,31 +2,51 @@
   padding: 2em;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 23.75em;
   border: 1px solid #F2F2F2;
   font-family: inherit;
+  border-radius: 8px;
+  background: #FFFFFF;
 
   &>* {
     margin-bottom: 2em;
   }
 
-  .SortPanel {
-    width: 14.688em;
-  }
 
-  .panelBottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .filters {
     margin-bottom: 0;
 
-    .gamesAmount {
-      color: #808080;
+    &_display {
+      display: none;
     }
 
-    .ActionButton {
-      width: 7.5em;
+    &>* {
+      margin-bottom: 2em;
     }
+
+    .SortPanel {
+      width: 14.688em;
+    }
+
+    .resetBlock {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .gamesAmount {
+        color: #808080;
+      }
+
+      .ActionButton {
+        width: 7.5em;
+      }
+    }
+  }
+
+  .hideFiltersForMobileVersion {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
   }
 }
