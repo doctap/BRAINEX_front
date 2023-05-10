@@ -6,6 +6,8 @@ export default (
 ): IGameBase[] => {
   const { providerIds, groupIds, gameNameSearchString, data, sortType } = filtersAndSorts;
 
+  const isSorting = sortType === 'withoutSorting';
+
   const foundBySearch = data.games.filter(g => g.name.toLowerCase().includes(gameNameSearchString.toLowerCase()));
 
   const gamesIdsByGroups = data.groups.filter(g => groupIds.some(id => id === g.id)).flatMap(x => x.games);
@@ -15,19 +17,19 @@ export default (
     const gamesByGroups = foundBySearch.filter(e => gamesIdsByGroups.some(id => e.id === id));
 
     const groupsProviders = gamesByGroups.filter(g => gamesIdsByProvidersIds.some(p => p.id === g.id));
-    return getSortedGames(sortType, groupsProviders);
+    return isSorting ? groupsProviders : getSortedGames(sortType, groupsProviders);
   }
 
   if (providerIds.length !== 0) {
-    return getSortedGames(sortType, gamesIdsByProvidersIds);
+    return isSorting ? gamesIdsByProvidersIds : getSortedGames(sortType, gamesIdsByProvidersIds);
   }
 
   if (groupIds.length !== 0) {
     const groups = foundBySearch.filter(e => gamesIdsByGroups.some(id => e.id === id));
-    return getSortedGames(sortType, groups);
+    return isSorting ? groups : getSortedGames(sortType, groups);
   }
 
-  return getSortedGames(sortType, foundBySearch);
+  return isSorting ? foundBySearch : getSortedGames(sortType, foundBySearch);
 };
 
 export interface IFilterSort {
@@ -35,7 +37,7 @@ export interface IFilterSort {
   providerIds: number[]
   gameNameSearchString: string
   data: IData
-  sortType: SortingValueType
+  sortType: SortingValueType | 'withoutSorting'
 }
 
 export interface IData {

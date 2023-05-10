@@ -1,42 +1,64 @@
-.main {
-  width: 100%;
-  height: 100%;
-  font-family: Prompt;
-  padding: 4.688em 5.125em 0 5.125em;
-  position: relative;
+.wrapper {
+  min-width: fit-content;
 
-  .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  .main {
+    height: 100%;
+    font-family: Prompt;
+    padding: 4.688em 5.125em 0 5.125em;
+    position: relative;
+    min-width: fit-content;
 
-    &_mobileVersion {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .items {
+    .content {
       display: flex;
-      flex-direction: column;
-      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
 
-      &>* {
-        margin-bottom: 2em;
+      &_mobileVersion {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .itemsBlock {
+        width: 100%;
+
+        .items {
+          width: 52.75em;
+          margin: 0 auto;
+
+          &>* {
+            margin-bottom: 1.25em;
+          }
+        }
+      }
+
+      .ManagePanelBlock {
+
+        .ManagePanel {
+          margin-left: 1.25em;
+        }
       }
     }
-
-    .FilterPanel {}
   }
+
 }
+
 
 @media screen and (max-width: 428px) {
 
-  .main {
+  .wrapper .main {
     padding: 15em 1.5em 0 1.5em;
   }
 
-  .main .content .FilterPanel {
+  .wrapper .main .content .itemsBlock .items {
+    width: 23.75em;
+  }
+
+  .wrapper .main .content .ManagePanelBlock {
     position: absolute;
     top: 2em;
+  }
+
+  .wrapper .main .content .ManagePanelBlock .ManagePanel {
+    margin-left: 0;
   }
 }

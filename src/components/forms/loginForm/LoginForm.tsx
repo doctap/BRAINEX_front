@@ -8,21 +8,34 @@ interface ILoginForm {
   logo: string
   showPasswordIcon: string
   spinner: string
+  inValidCredentials: () => void
 }
 
 export const LoginForm = (prop: ILoginForm) => {
   const [loading, setLoading] = useState(false);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  let login = '';
-  let password = '';
+  const getLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const elem = event.currentTarget;
+    const value = elem.value;
 
-  const getLogin = (value: string) => {
-    login = value;
+    setLogin(value);
   };
 
-  const getPassword = (value: string) => {
-    password = value;
+  const getPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const elem = event.currentTarget;
+    const value = elem.value;
+
+    setPassword(value);
+  };
+
+  const resetForm = () => {
+    prop.inValidCredentials();
+    setLoading(false);
+    setLogin('');
+    setPassword('');
   };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +48,7 @@ export const LoginForm = (prop: ILoginForm) => {
     setLoading(true);
     const isLogin = await prop.submit(login.trim(), password);
 
-    if (isLogin) navigate('/');
+    isLogin ? navigate('/') : resetForm();
   };
 
   return (
@@ -48,11 +61,13 @@ export const LoginForm = (prop: ILoginForm) => {
       </div>
       <div className={styles.TextFields}>
         <TextField
+          value={login}
           onChange={getLogin}
           placeHolder='Login'
           type='text'
         />
         <TextField
+          value={password}
           icon={prop.showPasswordIcon}
           onChange={getPassword}
           placeHolder='Password'

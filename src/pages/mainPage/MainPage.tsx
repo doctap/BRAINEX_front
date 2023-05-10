@@ -5,10 +5,9 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks/redux';
 import { fetchGames, logout } from '../../api';
 import getData from '../../repository';
 import { getColumns } from '../../helpers';
-import type { IUserLocalStorage, ColumnType, SortingValueType } from '../../types';
+import type { IUserLocalStorage, ColumnType } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/headers';
-import sortGames from '../../helpers/getSortedGames';
 import burgerIcon from '../../images/icon-burger.png';
 import styles from './MainPage.module.scss';
 
@@ -22,7 +21,7 @@ const defaultData: IFilterSort = {
     groups: [],
     providers: []
   },
-  sortType: 'alphabetic-order'
+  sortType: 'withoutSorting'
 };
 
 export const MainPage = () => {
@@ -34,16 +33,10 @@ export const MainPage = () => {
 
   const [games, setGames] = useState<IGameBase[]>([]);
   const [column, setColumn] = useState<ColumnType>(defaultColumn);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 428);
+  const [isSmallScreen, setIsSmallScreen] = useState(document.documentElement.clientWidth < 428);
 
   const handleResize = () => {
-    const size = document.documentElement.clientWidth;
-
-    if (size < 428) {
-      setIsSmallScreen(true);
-    } else {
-      setIsSmallScreen(false);
-    }
+    document.documentElement.clientWidth < 428 ? setIsSmallScreen(true) : setIsSmallScreen(false);
   };
 
   window.addEventListener('resize', handleResize);
@@ -53,7 +46,7 @@ export const MainPage = () => {
 
   const refConditions = useRef<IFilterSort>({ ...defaultData });
 
-  const getFilteredData = (conditions: IFilterSort) => {
+  const getFilterSortData = (conditions: IFilterSort) => {
     setGames(getData({ ...conditions, data }));
   };
 
@@ -90,7 +83,7 @@ export const MainPage = () => {
   }, []);
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <Header userName={user?.userName} logout={getLogout} />
       <main className={styles.main}>
         {error !== '' ? <h1>{error}</h1> : null}
@@ -101,27 +94,31 @@ export const MainPage = () => {
                 ? `${styles.content} ${styles.content_mobileVersion}`
                 : `${styles.content}`
             }>
-              <div className={styles.items}>
-                <GameItemList items={getColumns(games, isSmallScreen ? 2 : column)} />
+              <div className={styles.itemsBlock}>
+                <div className={styles.items}>
+                  <GameItemList items={getColumns(games, isSmallScreen ? 2 : column)} />
+                </div>
               </div>
-              <div className={styles.FilterPanel}>
-                <ManagePanel
-                  mobileVersion={isSmallScreen}
-                  burgerButtonIcon={burgerIcon}
-                  reset={reset}
-                  gamesAmount={games.length}
-                  groups={groups}
-                  providers={providers}
-                  onChange={getColumnCount}
-                  onFilter={getFilteredData}
-                  refConditions={refConditions}
-                  defaultColumn={defaultColumn}
-                />
+              <div className={styles.ManagePanelBlock}>
+                <div className={styles.ManagePanel}>
+                  <ManagePanel
+                    mobileVersion={isSmallScreen}
+                    burgerButtonIcon={burgerIcon}
+                    reset={reset}
+                    gamesAmount={games.length}
+                    groups={groups}
+                    providers={providers}
+                    onChange={getColumnCount}
+                    onFilterSort={getFilterSortData}
+                    refConditions={refConditions}
+                    defaultColumn={defaultColumn}
+                  />
+                </div>
               </div>
             </div>
             : null
         }
       </main>
-    </>
+    </div>
   );
 };

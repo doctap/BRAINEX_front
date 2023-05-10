@@ -11,7 +11,7 @@ interface IManagePanel {
   refConditions: MutableRefObject<IFilterSort>
   groups: ITerm[]
   providers: ITerm[]
-  onFilter: (conditions: IFilterSort) => void
+  onFilterSort: (conditions: IFilterSort) => void
   onChange: (value: ColumnType) => void
   defaultColumn: ColumnType
   gamesAmount: number
@@ -29,12 +29,12 @@ export const ManagePanel = (prop: IManagePanel) => {
     prop.refConditions.current.gameNameSearchString = element.value;
 
     setSearchInputValue(element.value);
-    prop.onFilter(prop.refConditions.current);
+    prop.onFilterSort(prop.refConditions.current);
   };
 
   const getSortedGames = (sort: SortingValueType) => {
     prop.refConditions.current.sortType = sort;
-    prop.onFilter(prop.refConditions.current);
+    prop.onFilterSort(prop.refConditions.current);
   };
 
   const displayFilters = () => {
@@ -47,7 +47,6 @@ export const ManagePanel = (prop: IManagePanel) => {
 
   return (
     <div className={styles.managePanel}>
-
       <SearchInput value={searchInputValue} icon={icon} onChange={getSearchString} placeholder='Search' />
 
       <div className={
@@ -59,13 +58,10 @@ export const ManagePanel = (prop: IManagePanel) => {
           refConditions={prop.refConditions}
           groups={prop.groups}
           providers={prop.providers}
-          onFilterSort={prop.onFilter}
+          onFilterSort={prop.onFilterSort}
         />
-
         {!prop.mobileVersion
-          ? <div className={styles.range}>
-            <Range title='Columns' max={4} min={2} onChange={prop.onChange} defaultValue={prop.defaultColumn} />
-          </div>
+          ? <Range title='Columns' max={4} min={2} onChange={prop.onChange} defaultValue={prop.defaultColumn} />
           : null}
 
         <div className={styles.SortPanel}>

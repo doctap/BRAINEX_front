@@ -12,10 +12,6 @@ export const GameItemList = (prop: IGameItemList) => {
     <>
       {prop.items.map((l, i) => (
         <div
-          style={{
-            display: 'flex',
-            justifyContent: l.length === 2 ? 'center' : 'space-between'
-          }}
           className={styles.row}
           key={i}
         >

@@ -4,22 +4,14 @@ import styles from './TextField.module.scss';
 
 interface ITextField {
   type: string
-  onChange: (value: string) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   placeHolder: string
   icon?: string
+  value: string
 }
 
 export const TextField = (prop: ITextField) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [value, setValue] = useState('');
-
-  const getValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const elem = event.currentTarget;
-    const value = elem.value;
-    
-    setValue(value);
-    prop.onChange(value);
-  };
 
   const toggleVisibility = () => {
     setShowPassword(!showPassword);
@@ -28,9 +20,9 @@ export const TextField = (prop: ITextField) => {
   return (
     <label className={styles.TextField}>
       <input
-        value={value}
+        value={prop.value}
         type={showPassword ? 'text' : prop.type}
-        onChange={getValue}
+        onChange={prop.onChange}
         placeholder={prop.placeHolder}
         className={styles.input}
       />

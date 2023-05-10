@@ -2,20 +2,18 @@
   height: 191px;
   width: 268px;
   border-radius: 8px;
-  margin: 0 0.9em;
 }
 
 .cover {
   height: 141px;
   width: 196px;
   border-radius: 8px;
-  margin: 0 0.8em;
 }
 
 @media screen and (max-width: 428px) {
   .cover {
+    height: 130px;
     width: 180px;
-    margin: 0 8px;
   }
 }
 

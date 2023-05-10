@@ -16,7 +16,7 @@ export const BurgerButton = (prop: IBurgerButton) => {
       className={styles.BurgerButton}
     >
       <img className={styles.img} src={prop.icon} alt='' />
-      {!prop.toggle ? `${prop.nameOn}` : `${prop.nameOff}`}
+      {prop.toggle ? `${prop.nameOn}` : `${prop.nameOff}`}
     </button>
   );
 };

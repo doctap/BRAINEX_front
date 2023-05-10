@@ -1,0 +1,36 @@
+.shadow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #00000039;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    width: 25em;
+    height: 10em;
+    background: #ffffff;
+    border-radius: 5px;
+
+    .buttonBlock {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+
+      .button {
+        width: 4em;
+        background: #FDBC11;
+        border: none;
+        border-radius: 3px;
+      }
+    }
+  }
+}

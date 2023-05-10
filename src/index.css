@@ -6,11 +6,9 @@
   box-sizing: border-box;
 }
 
-html,
-body,
 #root {
-  min-height: 100vh;
   min-width: fit-content;
+  max-width: 100%;
 }
 
 body {
