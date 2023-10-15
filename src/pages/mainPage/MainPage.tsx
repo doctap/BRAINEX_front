@@ -96,7 +96,7 @@ export const MainPage = () => {
             }>
               <div className={styles.itemsBlock}>
                 <div className={styles.items}>
-                  <GameItemList items={getColumns(games, isSmallScreen ? 2 : column)} />
+                  <GameItemList column={column} items={getColumns(games, isSmallScreen ? 2 : column)} />
                 </div>
               </div>
               <div className={styles.ManagePanelBlock}>

@@ -2,9 +2,11 @@ import React from 'react';
 import type { IGameBase } from '../../../repository';
 import { GameItem } from '../../elements';
 import styles from './GameItemList.module.scss';
+import { type ColumnType } from '../../../types';
 
 interface IGameItemList {
   items: IGameBase[][]
+  column: ColumnType
 }
 
 export const GameItemList = (prop: IGameItemList) => {
@@ -17,7 +19,7 @@ export const GameItemList = (prop: IGameItemList) => {
         >
           {l.map(x => (
             <GameItem
-              isLarge={l.length % 2 !== 0}
+              isLarge={prop.column === 3}
               key={x.id}
               name={x.name}
               cover={x.cover}
